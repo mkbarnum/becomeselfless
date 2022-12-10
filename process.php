@@ -1,10 +1,10 @@
 <?php
  
-    $to = "applications@becomeselfless.org"; 
+    $to = "chwang610@gmail.com"; 
     $from = $_REQUEST['email']; 
     $name = $_REQUEST['name']; 
     $headers = "From: $from"; 
-    $subject = "Message via RunCharity"; 
+    $subject = "Message via SELFLESS"; 
  
     $fields = array(); 
     $fields{"name"} = "name"; 
