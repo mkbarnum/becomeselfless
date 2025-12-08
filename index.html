@@ -13,6 +13,7 @@
     <link rel="icon" type="image/png" href="./images/SelflessLogo1.png">
     
     <link rel="stylesheet" href="./src/styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" integrity="sha512-5Qm0XkGm2f3Q1Yq8s+8q3e6w1u9b6oYpWih2iVZy6f6Q1G5Jx2b5J0zv1b4K2g1h3Q2g6CJnq8rjQw1+Yf2QxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="./src/js/main.js" defer></script>
   </head>
   <body>
@@ -35,6 +36,8 @@
             <li><a href="#programs"><span>Programs</span></a></li>
             <li><a href="faq.html"><span>FAQ</span></a></li>
             <li><a href="#contact"><span>Contact</span></a></li>
+            <li class="nav-flag"><a href="https://selfless-ce.web.app" title="Uganda"><img src="./images/flags/ug.svg" alt="Uganda flag" class="nav-flag-img" width="28" height="18"></a></li>
+            <li class="nav-flag"><a href="#country-liberia" title="Liberia"><img src="./images/flags/lr.svg" alt="Liberia flag" class="nav-flag-img" width="28" height="18"></a></li>
           </ul>
         </div>
       </div>
@@ -44,13 +47,20 @@
       
         <header class="hero">
           <div class="hero-bg-wrapper">
-             <img src="./images/students.jpg" 
-                  class="hero-bg parallax-hero" 
-                  alt="Hero" 
-                  width="1600" 
-                  height="900" 
-                  loading="eager"
-                  decoding="async">
+             <img src="./images/intro.jpg"
+               class="hero-bg hero-bg-layer parallax-hero visible"
+               alt="Hero 1"
+               width="1600"
+               height="900"
+               loading="eager"
+               decoding="async">
+             <img src="./images/students.jpg"
+               class="hero-bg hero-bg-layer parallax-hero"
+               alt="Hero 2"
+               width="1600"
+               height="900"
+               loading="eager"
+               decoding="async">
              <div class="hero-overlay"></div>
           </div>
           <div class="container hero-content">
@@ -63,7 +73,7 @@
           </div>
         </header>
 
-        <section class="stats-section">
+        <!--<section class="stats-section">
             <div class="container">
                 <div class="stats-grid">
                     <div class="stat-item fade-up">
@@ -84,7 +94,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section>-->
 
         <section class="intro-section">
           <div class="container intro-layout">
@@ -223,6 +233,8 @@
 
             <div class="bento-grid">
                 <div class="bento-item bento-large parallax-item fade-up">
+                  <!-- anchor target for US -->
+                  <a id="country-us"></a>
                     <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&q=80&fm=webp" alt="United States" width="800" height="600" loading="lazy" decoding="async">
                     <div class="bento-content">
                         <span class="bento-tag">United States</span>
@@ -234,7 +246,9 @@
 
                 <div class="bento-stack">
                     <div class="bento-item bento-small parallax-item fade-up" data-delay="100">
-                        <img src="./images/hero1.jpg" alt="Uganda" width="600" height="400" loading="lazy" decoding="async">
+                      <!-- anchor target for Uganda -->
+                      <a id="country-uganda"></a>
+                        <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=600&q=80&fm=webpß" alt="Uganda" width="600" height="400" loading="lazy" decoding="async">
                         <div class="bento-content">
                             <span class="bento-tag">Uganda</span>
                             <h3>Education & Tech</h3>
@@ -244,6 +258,8 @@
                     </div>
 
                     <div class="bento-item bento-small parallax-item fade-up" data-delay="200">
+                      <!-- anchor target for Liberia -->
+                      <a id="country-liberia"></a>
                         <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=600&q=80&fm=webp" alt="Liberia" width="600" height="400" loading="lazy" decoding="async">
                         <div class="bento-content">
                             <span class="bento-tag">Liberia</span>
