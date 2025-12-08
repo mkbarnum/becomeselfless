@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let visibleLayer = 0; // which layer (0/1) is currently visible
 
         const fadeDuration = 1000; // should match CSS transition
-        const displayInterval = 3000; // time between crossfades (3s)
+        const displayInterval = 5000; // time between crossfades (3s)
         let intervalId = null;
 
         function crossfade() {
