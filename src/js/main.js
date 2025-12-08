@@ -164,13 +164,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 3. Parallax Effect (Optimized) ---
     function animateParallax() {
         const scrollY = window.scrollY;
-        
-        // Hero Image
-        const heroImg = document.querySelector('.parallax-hero');
-        if (heroImg) {
-           
-            heroImg.style.transform = `translate3d(0, ${scrollY * 0.4}px, 0)`; 
-        }
+
+        // Hero Images (apply to all hero layers)
+        document.querySelectorAll('.parallax-hero').forEach(heroImg => {
+            heroImg.style.transform = `translate3d(0, ${scrollY * 0.4}px, 0)`;
+        });
 
         // Other Items
         document.querySelectorAll('.parallax-item').forEach(item => {
@@ -180,8 +178,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const center = rect.top + rect.height / 2;
                 const viewportCenter = window.innerHeight / 2;
                 const diff = center - viewportCenter;
-                const speed = 0.15; 
-                
+                const speed = 0.15;
+
                 const img = item.querySelector('img');
                 if (img) {
                     img.style.transform = `translate3d(0, ${-diff * speed}px, 0)`;
@@ -223,5 +221,77 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.value-item').forEach(item => {
         valuesObserver.observe(item);
     });
+
+    // --- 5. Hero Crossfade Slideshow (two layered images) ---
+    (function heroCrossfade(){
+        const layers = Array.from(document.querySelectorAll('.hero-bg-layer'));
+        if (layers.length < 2) return;
+
+        const images = [
+            './images/intro.jpg',
+            './images/students.jpg',
+            './images/university.jpg',
+            './images/selfless.jpg',
+            './images/wood-log-grass.jpg',
+            './images/word-cloud-selflessness-concept-create-text-246623390.webp',
+            './images/beautiful-shot-milky-way-hill-with-few-trees-night.jpg',
+            './images/stunning-view-green-northern-lights-reflected-tranquil-lake-night.jpg'
+        ];
+
+        // Preload all images
+        const preloaded = images.map(src => { const i = new Image(); i.src = src; return i; });
+
+        // Initialize indices and visibility
+        let currentImageIndex = images.indexOf(layers[0].getAttribute('src'));
+        if (currentImageIndex === -1) currentImageIndex = 0;
+        layers[0].classList.add('visible');
+        layers[1].classList.remove('visible');
+        let visibleLayer = 0; // which layer (0/1) is currently visible
+
+        const fadeDuration = 1000; // should match CSS transition
+        const displayInterval = 3000; // time between crossfades (3s)
+        let intervalId = null;
+
+        function crossfade() {
+            const nextIdx = (currentImageIndex + 1) % images.length;
+            const hiddenLayerIndex = 1 - visibleLayer;
+            const hiddenLayer = layers[hiddenLayerIndex];
+
+            // Prepare next image on hidden layer
+            if (hiddenLayer.getAttribute('src') !== images[nextIdx]) {
+                hiddenLayer.setAttribute('src', images[nextIdx]);
+            }
+
+            const showNew = () => {
+                // Fade new layer in (both layers briefly visible -> crossfade)
+                hiddenLayer.classList.add('visible');
+
+                // After fadeDuration, hide previous layer and update indices
+                setTimeout(() => {
+                    layers[visibleLayer].classList.remove('visible');
+                    visibleLayer = hiddenLayerIndex;
+                    currentImageIndex = nextIdx;
+                }, fadeDuration);
+            };
+
+            if (preloaded[nextIdx].complete) showNew();
+            else preloaded[nextIdx].onload = showNew;
+        }
+
+        function start() {
+            if (intervalId) return;
+            intervalId = setInterval(crossfade, displayInterval);
+        }
+        function stop() {
+            if (!intervalId) return;
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+
+        start();
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) stop(); else start();
+        });
+    })();
 
 });
