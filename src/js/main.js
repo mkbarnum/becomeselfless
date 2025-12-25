@@ -1,297 +1,206 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. Nav Logic ---
+    // --- 1. Program Data---
+    const programData = {
+        cap: {
+            img: "./images/students.jpg",
+            tag: "Education",
+            title: "College Assistance Program (CAP)",
+            purpose: "The purpose of the College Assistance Program (CAP) is to help guide individuals to lifelong self-sufficiency by providing supplemental funds to attend a 4-year university as well as by providing individualized career coaching and training for financial literacy and life skills.",
+            guidelines: "This is not a traditional scholarship program. SELFLESS does not award predetermined amounts. Recipients meet with a coach to determine the amount awarded based on personal needs. We strongly encourage recipients to attend BYU (Provo or Rexburg).",
+            eligibility: [
+                "Must have graduated high school, or be on track to graduate.",
+                "Must demonstrate community involvement and academic improvement.",
+                "Must have a strong desire to attend college."
+            ],
+            conditions: [
+                "Maintain a 3.0 GPA.",
+                "Enroll in a minimum of 14 credit hours per semester.",
+                "Apply for FAFSA each year.",
+                "Maintain a budget with your assigned coach.",
+                "Encouraged to work 8-10 hours a week."
+            ]
+        },
+        missionary: {
+            img: "./images/missionary.jpg",
+            tag: "Faith & Service",
+            title: "Missionary Assistance Program",
+            purpose: "To provide an opportunity for individuals—who otherwise may not have the opportunity due to financial constraints—to increase their faith and gain leadership, management, and other valuable skills through serving a full-time mission.",
+            guidelines: "The award includes the monthly cost of missionary service as determined by the Church of Jesus Christ of Latter-Day Saints, as well as necessary preparation expenses such as clothing and supplies.",
+            eligibility: [
+                "Individuals preparing for full-time missionary service.",
+                "Demonstrated financial need."
+            ],
+            conditions: [
+                "Completion of full missionary term.",
+                "Adherence to all standards of the serving organization."
+            ]
+        },
+        job: {
+            img: "./images/work.jpg",
+            tag: "Career",
+            title: "Job Improvement Program",
+            purpose: "To promote self-sufficiency by providing financial training and career coaching, helping meet basic needs for short periods so recipients can focus on upskilling.",
+            guidelines: "A coach will help determine funds needed for higher education courses, technical training, materials, and living costs to supplement existing earnings.",
+            eligibility: [
+                "Individuals seeking to improve technical skills and long-term job acquisition.",
+                "Willingness to work on a personal budget."
+            ],
+            conditions: [
+                "Active participation in career coaching sessions.",
+                "Evidence of enrollment or progress in training."
+            ]
+        }
+    };
+
+    // --- 2. Modal Logic (no blur element) ---
+    const modal = document.getElementById('program-modal');
+    const modalBody = document.getElementById('modal-body-inject');
+    const closeBtn = document.querySelector('.modal-close');
+    const applyBtn = document.querySelector('.modal-apply-btn');
+    const programRow = document.querySelector('.modal-program-row');
+
+    function openModal(id) {
+        const data = programData[id];
+        if (!data) return;
+
+        modalBody.innerHTML = `
+            <div class="modal-hero" style="margin-bottom:18px;">
+                <img src="${data.img}" alt="${data.title}" style="width:100%; height:260px; object-fit:cover; border-radius:8px; border-bottom:2px solid var(--gold);">
+            </div>
+            <span class="modal-header-tag">${data.tag}</span>
+            <h2 class="modal-title">${data.title}</h2>
+            <h3 class="modal-section-title">Purpose</h3>
+            <p class="modal-text">${data.purpose}</p>
+            <h3 class="modal-section-title">General Guidelines</h3>
+            <p class="modal-text">${data.guidelines}</p>
+            <h3 class="modal-section-title">Criteria & Eligibility</h3>
+            <ul class="modal-list">${data.eligibility.map(i => `<li>${i}</li>`).join('')}</ul>
+            <h3 class="modal-section-title">Conditions to Maintain</h3>
+            <ul class="modal-list">${data.conditions ? data.conditions.map(i => `<li>${i}</li>`).join('') : '<li>Contact us for details.</li>'}</ul>
+        `;
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+       
+        if (closeBtn) closeBtn.focus();
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    // wire existing Read More links to modal (works with href="#cap" or program-details.html#cap)
+    document.querySelectorAll('.luxury-card__link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = link.getAttribute('href').split('#')[1];
+            openModal(id);
+        });
+
+        // preload preview image on hover to make modal appear snappier
+        link.addEventListener('mouseenter', (e) => {
+            const id = (link.getAttribute('href') || '').split('#')[1];
+            if (id && programData[id] && programData[id].img) {
+                const img = new Image();
+                img.src = programData[id].img;
+            }
+        });
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    if (applyBtn) applyBtn.addEventListener('click', (e) => {
+        closeModal();
+        setTimeout(() => {
+            document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+    });
+
+   
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    });
+
+    // populate modal-program-row with mini cards (side-scroll)
+    function populateModalRow() {
+        if (!programRow) return;
+        programRow.innerHTML = '';
+        Object.keys(programData).forEach(key => {
+            const d = programData[key];
+            const card = document.createElement('div');
+            card.className = 'mini-card';
+            card.innerHTML = `
+                <img src="${d.img}" alt="${d.title}">
+                <div class="mini-body">
+                    <h4>${d.title}</h4>
+                    <p style="margin:0; font-size:0.85rem; color:#bdbdbd;">${d.tag}</p>
+                </div>
+            `;
+            card.addEventListener('click', () => openModal(key));
+            programRow.appendChild(card);
+        });
+    }
+
+    populateModalRow(); 
+
     const nav = document.querySelector('.nav-fixed');
-    const navList = document.querySelector('.nav-list');
     const navLinks = document.querySelectorAll('.nav-list a');
     const hamburger = document.querySelector('.hamburger');
     const navWrapper = document.querySelector('.nav-pill-wrapper');
 
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) nav.classList.add('scrolled');
+        if (window.scrollY > 80) nav.classList.add('scrolled');
         else nav.classList.remove('scrolled');
-    });
+    }, { passive: true });
 
     if (hamburger) {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navWrapper.classList.toggle('active');
-            
-            // Toggle Aria for accessibility
-            const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
-            hamburger.setAttribute('aria-expanded', !expanded);
-        });
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                setTimeout(() => {
-                    hamburger.classList.remove('active');
-                    navWrapper.classList.remove('active');
-                    hamburger.setAttribute('aria-expanded', 'false');
-                }, 400); 
-            });
         });
     }
 
-    // Pill Logic (Desktop Only)
-    function movePill(target) {
-        if (window.innerWidth <= 768) return;
-        
-        let style = document.getElementById('nav-pill-style');
-        if (!style) {
-            style = document.createElement('style');
-            style.id = 'nav-pill-style';
-            document.head.appendChild(style);
-        }
-
-        const listRect = navList.getBoundingClientRect();
-        const targetRect = target.getBoundingClientRect();
-        const left = targetRect.left - listRect.left;
-        const width = targetRect.width;
-
-        style.innerHTML = `
-            .nav-list::after {
-                transform: translateX(${left}px);
-                width: ${width}px;
-                opacity: 1;
-            }
-        `;
-        navList.classList.add('has-pill');
-    }
-
-    const activeLink = document.querySelector('.nav-list a.active');
-    if (activeLink && window.innerWidth > 768) setTimeout(() => movePill(activeLink), 100);
-
-    navLinks.forEach(link => {
-        link.addEventListener('mouseenter', (e) => movePill(e.target.closest('a')));
-        link.addEventListener('click', (e) => {
-            navLinks.forEach(l => l.classList.remove('active'));
-            e.target.closest('a').classList.add('active');
-        });
-    });
-
-    if(navList) {
-        navList.addEventListener('mouseleave', () => {
-            const currentActive = document.querySelector('.nav-list a.active');
-            if (currentActive) movePill(currentActive);
-            else navList.classList.remove('has-pill');
-        });
-    }
-
-
-    // --- 2. Animations (General Observer) ---
-    const triggerObserverOptions = {
-        rootMargin: "0px 0px -15% 0px", 
-        threshold: 0.05 
-    };
-
-    const triggerObserver = new IntersectionObserver((entries, observer) => {
+    const triggerObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const target = entry.target;
-                const delay = parseInt(target.getAttribute('data-delay') || 0);
-
-                setTimeout(() => {
-                    target.classList.add('in-view');
-                    if (target.classList.contains('fade-in-text')) target.classList.add('in-view');
-                }, delay);
-
-                if (target.classList.contains('split-header') || target.classList.contains('stat-number')) {
-                    observer.unobserve(target);
-                }
+                entry.target.classList.add('in-view');
             }
         });
-    }, triggerObserverOptions);
+    }, { threshold: 0.05, rootMargin: "0px 0px -10% 0px" });
 
-    document.querySelectorAll('.fade-up, .reveal-mask, .split-header').forEach(el => triggerObserver.observe(el));
-    
-    // Initial hero text load
-    const heroText = document.querySelector('.hero-sub-mask p');
-    if(heroText) setTimeout(() => heroText.classList.add('in-view'), 500);
+    document.querySelectorAll('.fade-up, .split-header, .hero-sub-mask p').forEach(el => triggerObserver.observe(el));
 
-    // Split Header Logic
     document.querySelectorAll('.split-header').forEach(header => {
         const text = header.innerText;
-        header.innerHTML = '';
-        text.split('').forEach((char, index) => {
-            const span = document.createElement('span');
-            // Fix: Use non-breaking space for ' '
-            span.innerHTML = char === ' ' ? '&nbsp;' : char; 
-            span.style.transitionDelay = `${index * 0.02}s`; 
-            header.appendChild(span);
-        });
-        triggerObserver.observe(header);
+        header.innerHTML = text.split('').map((char, i) => 
+            `<span style="transition-delay: ${i * 0.02}s">${char === ' ' ? '&nbsp;' : char}</span>`
+        ).join('');
     });
 
-    // Stats Logic
-    document.querySelectorAll('.stat-number').forEach(el => {
-        const statItem = el.closest('.stat-item');
-        triggerObserver.observe(statItem); 
-        
-        statItem.addEventListener('transitionend', function handler(e) {
-            // Only trigger if opacity finished
-            if (e.propertyName === 'opacity' && statItem.classList.contains('in-view')) {
-                 animateValue(el);
-                 statItem.removeEventListener('transitionend', handler);
-            }
-        });
-    });
-
-    function animateValue(obj) {
-        if(obj.dataset.animated) return;
-        obj.dataset.animated = "true";
-
-        const target = parseFloat(obj.getAttribute('data-target'));
-        const suffix = obj.getAttribute('data-suffix');
-        const duration = 2500;
-        let startTimestamp = null;
-
-        const step = (timestamp) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            const easeProgress = 1 - Math.pow(1 - progress, 4); 
-            
-            obj.innerHTML = Math.floor(easeProgress * target) + suffix;
-            
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            }
-        };
-        window.requestAnimationFrame(step);
-    }
-
-
-    // --- 3. Parallax Effect (Optimized) ---
+    // Parallax
     function animateParallax() {
         const scrollY = window.scrollY;
-
-        // Hero Images (apply to all hero layers)
-        document.querySelectorAll('.parallax-hero').forEach(heroImg => {
-            heroImg.style.transform = `translate3d(0, ${scrollY * 0.4}px, 0)`;
+        document.querySelectorAll('.parallax-hero').forEach(img => {
+            img.style.transform = `translate3d(0, ${scrollY * 0.35}px, 0)`;
         });
-
-        // Other Items
-        document.querySelectorAll('.parallax-item').forEach(item => {
-            const rect = item.getBoundingClientRect();
-            // Optimization: Only animate if inside viewport
-            if(rect.top < window.innerHeight && rect.bottom > 0) {
-                const center = rect.top + rect.height / 2;
-                const viewportCenter = window.innerHeight / 2;
-                const diff = center - viewportCenter;
-                const speed = 0.15;
-
-                const img = item.querySelector('img');
-                if (img) {
-                    img.style.transform = `translate3d(0, ${-diff * speed}px, 0)`;
-                }
-            }
-        });
-
         requestAnimationFrame(animateParallax);
     }
     requestAnimationFrame(animateParallax);
 
-
-    // --- 4. Core Values Scroll Automation ---
-    const valuesObserverOptions = {
-        root: null,
-        rootMargin: "-45% 0px -45% 0px", // Middle 10%
-        threshold: 0
-    };
-
-    const valuesObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Remove active from all
-                document.querySelectorAll('.value-item').forEach(i => i.classList.remove('active'));
-                document.querySelectorAll('.value-desc').forEach(d => d.classList.remove('active'));
-
-                // Add active to current
-                entry.target.classList.add('active');
-                
-                const id = entry.target.getAttribute('data-id');
-                const targetDesc = document.querySelector(`.value-desc[data-id="${id}"]`);
-                if (targetDesc) {
-                    targetDesc.classList.add('active');
-                }
-            }
+    // Values Interaction
+    const valueItems = document.querySelectorAll('.value-item');
+    const valueDescs = document.querySelectorAll('.value-desc');
+    
+    valueItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            const id = item.dataset.id;
+            valueItems.forEach(i => i.classList.remove('active'));
+            valueDescs.forEach(d => d.classList.remove('active'));
+            item.classList.add('active');
+            document.querySelector(`.value-desc[data-id="${id}"]`).classList.add('active');
         });
-    }, valuesObserverOptions);
-
-    document.querySelectorAll('.value-item').forEach(item => {
-        valuesObserver.observe(item);
     });
-
-    // --- 5. Hero Crossfade Slideshow (two layered images) ---
-    (function heroCrossfade(){
-        const layers = Array.from(document.querySelectorAll('.hero-bg-layer'));
-        if (layers.length < 2) return;
-
-        const images = [
-            './images/intro.jpg',
-            './images/students.jpg',
-            './images/university.jpg',
-            './images/selfless.jpg',
-            './images/wood-log-grass.jpg',
-            './images/word-cloud-selflessness-concept-create-text-246623390.webp',
-            './images/beautiful-shot-milky-way-hill-with-few-trees-night.jpg',
-            './images/stunning-view-green-northern-lights-reflected-tranquil-lake-night.jpg'
-        ];
-
-        // Preload all images
-        const preloaded = images.map(src => { const i = new Image(); i.src = src; return i; });
-
-        // Initialize indices and visibility
-        let currentImageIndex = images.indexOf(layers[0].getAttribute('src'));
-        if (currentImageIndex === -1) currentImageIndex = 0;
-        layers[0].classList.add('visible');
-        layers[1].classList.remove('visible');
-        let visibleLayer = 0; // which layer (0/1) is currently visible
-
-        const fadeDuration = 1000; // should match CSS transition
-        const displayInterval = 5000; // time between crossfades (3s)
-        let intervalId = null;
-
-        function crossfade() {
-            const nextIdx = (currentImageIndex + 1) % images.length;
-            const hiddenLayerIndex = 1 - visibleLayer;
-            const hiddenLayer = layers[hiddenLayerIndex];
-
-            // Prepare next image on hidden layer
-            if (hiddenLayer.getAttribute('src') !== images[nextIdx]) {
-                hiddenLayer.setAttribute('src', images[nextIdx]);
-            }
-
-            const showNew = () => {
-                // Fade new layer in (both layers briefly visible -> crossfade)
-                hiddenLayer.classList.add('visible');
-
-                // After fadeDuration, hide previous layer and update indices
-                setTimeout(() => {
-                    layers[visibleLayer].classList.remove('visible');
-                    visibleLayer = hiddenLayerIndex;
-                    currentImageIndex = nextIdx;
-                }, fadeDuration);
-            };
-
-            if (preloaded[nextIdx].complete) showNew();
-            else preloaded[nextIdx].onload = showNew;
-        }
-
-        function start() {
-            if (intervalId) return;
-            intervalId = setInterval(crossfade, displayInterval);
-        }
-        function stop() {
-            if (!intervalId) return;
-            clearInterval(intervalId);
-            intervalId = null;
-        }
-
-        start();
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) stop(); else start();
-        });
-    })();
-
 });
