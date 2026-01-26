@@ -4,309 +4,372 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SELFLESS | Empowering Communities</title>
-    <meta name="description" content="Selfless is a non-profit organization dedicated to empowering communities through education, self-reliance, and collective action.">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@400;500;600;700;800&family=Fira+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="./images/SelflessLogo1.png">
-    
-    <link rel="stylesheet" href="./src/styles/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" integrity="sha512-5Qm0XkGm2f3Q1Yq8s+8q3e6w1u9b6oYpWih2iVZy6f6Q1G5Jx2b5J0zv1b4K2g1h3Q2g6CJnq8rjQw1+Yf2QxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta
+      name="description"
+      content="Selfless is a non-profit organization dedicated to empowering communities through education, self-reliance, and collective action."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@400;500;600;700;800;900&family=Fira+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" type="image/png" href="./images/SelflessLogo1.png" />
+    <link rel="stylesheet" href="./src/styles/style.css" />
     <script src="./src/js/main.js" defer></script>
   </head>
+
   <body>
-    
     <nav class="nav-fixed">
       <div class="container nav-inner">
         <a href="index.html" class="logo">
-          <img src="./images/SelflessLogo1.png" alt="Selfless Logo" width="50" height="50" loading="eager">
-           <span>SELFLESS</span>
+          <img
+            src="./images/SelflessLogo1.png"
+            alt="Selfless Logo"
+            width="50"
+            height="50"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <span>SELFLESS</span>
         </a>
-        
-        <button class="hamburger" aria-label="Menu" aria-expanded="false">
-            <span></span>
-            <span></span>
+
+        <button class="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">
+          <span></span><span></span><span></span>
         </button>
 
-        <div class="nav-pill-wrapper">
+        <div class="nav-pill-wrapper" id="primary-nav">
           <ul class="nav-list">
             <li><a href="index.html" class="active"><span>Home</span></a></li>
             <li><a href="#programs"><span>Programs</span></a></li>
-            <li><a href="faq.html"><span>FAQ</span></a></li>
             <li><a href="#contact"><span>Contact</span></a></li>
-            <li class="nav-flag"><a href="https://selfless-ce.web.app" title="Uganda"><img src="./images/flags/ug.svg" alt="Uganda flag" class="nav-flag-img" width="28" height="18"></a></li>
-            <li class="nav-flag"><a href="#country-liberia" title="Liberia"><img src="./images/flags/lr.svg" alt="Liberia flag" class="nav-flag-img" width="28" height="18"></a></li>
+            <li class="nav-flag">
+              <a href="https://selfless-ce.web.app" title="Uganda">
+                <img src="./images/flags/ug.svg" alt="Uganda flag" class="nav-flag-img" width="28" height="18" />
+              </a>
+            </li>
+            <li class="nav-flag">
+              <a href="#country-liberia" title="Liberia">
+                <img src="./images/flags/lr.svg" alt="Liberia flag" class="nav-flag-img" width="28" height="18" />
+              </a>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
 
     <main>
-      
-        <header class="hero">
-          <div class="hero-bg-wrapper">
-             <img src="./images/intro.jpg"
-               class="hero-bg hero-bg-layer parallax-hero visible"
-               alt="Hero 1"
-               width="1600"
-               height="900"
-               loading="eager"
-               decoding="async">
-             <img src="./images/students.jpg"
-               class="hero-bg hero-bg-layer parallax-hero"
-               alt="Hero 2"
-               width="1600"
-               height="900"
-               loading="eager"
-               decoding="async">
-             <div class="hero-overlay"></div>
+      <!-- HERO -->
+      <header class="hero">
+        <div class="hero-bg-wrapper" aria-hidden="true">
+          <img
+            src="./images/intro.jpg"
+            class="hero-bg hero-bg-layer"
+            alt=""
+            width="1600"
+            height="900"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <img
+            src="./images/students.jpg"
+            class="hero-bg hero-bg-layer"
+            alt=""
+            width="1600"
+            height="900"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="hero-overlay"></div>
+        </div>
+
+        <div class="container hero-content">
+          <div class="hero-title-mask">
+            <h1 class="split-header" data-split="true">Selfless</h1>
           </div>
-          <div class="container hero-content">
-            <div class="hero-title-mask">
-                <h1 class="split-header">Selfless</h1>
-            </div>
-            <div class="hero-sub-mask">
-              <p class="fade-in-text">Supporting Efforts to Lead Families (and Individuals) to Life Long Education and Self-Sufficiency.</p>
+          <div class="hero-sub-mask">
+            <p class="fade-in-text">
+              Supporting Efforts to Lead Families (and Individuals) to Life Long Education and Self-Sufficiency.
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <!-- ABOUT -->
+      <section class="intro-section">
+        <div class="container intro-layout">
+          <div class="intro-visual-wrapper fade-up" data-delay="0">
+            <div class="intro-visual parallax-item">
+              <img
+                src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1200&q=80&fm=webp"
+                alt="Volunteers"
+                width="1200"
+                height="800"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
-        </header>
 
-        <section class="intro-section">
-          <div class="container intro-layout">
-            
-            <div class="intro-visual-wrapper fade-up" data-delay="0">
-                <div class="intro-visual parallax-item fade-up">
-                    <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800&q=80&fm=webp" 
-                         alt="Volunteers" 
-                         width="800" 
-                         height="600" 
-                         loading="lazy">
-                </div>
-            </div>
-            
-            <div class="intro-content">
-              <div class="text-wrapper">
-                  <h4 class="kicker fade-up" data-delay="100">About Us</h4>
-                  
-                  <h2 class="split-header gold-text intro-title">SELFLESS BEGINS SELF</h2>
-                  <p class="body-text fade-up" data-delay="200">We believe that the way to build stronger families and communities starts with individuals. Our mission is to empower people with the tools and resources to become self-sufficient. SELFLESS aims to offer these resources through our various financial need based programs. We focus on education and self improvement as the keys to self-sufficiency. SELFLESS really does begin with "self".</p>
-                  <a href="#contact" class="btn-luxury fade-up" data-delay="300">Contact Us</a>
-              </div>
+          <div class="intro-content">
+            <div class="text-wrapper">
+              <h4 class="kicker fade-up" data-delay="100">About Us</h4>
+
+             
+              <h2 class="gold-text intro-title fade-up" data-delay="140">
+                SELFLESS BEGINS SELF
+              </h2>
+
+              <p class="body-text fade-up" data-delay="220">
+                We believe that the way to build stronger families and communities starts with individuals. Our mission is
+                to empower people with the tools and resources to become self-sufficient. SELFLESS aims to offer these
+                resources through our various financial need based programs. We focus on education and self improvement as
+                the keys to self-sufficiency. SELFLESS really does begin with "self".
+              </p>
+
+              <a href="#contact" class="btn-luxury fade-up" data-delay="300">Contact Us</a>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="values" class="values-section">
-            <div class="container values-container">
-                <div class="values-sticky-left">
-                    <div class="values-header">
-                        <h2>Our Core<br>Values.</h2>
-                    </div>
-                    
-                    <div class="values-descriptions">
-                        <div class="value-desc active" data-id="0">
-                            <p><b>Integrity</b> is the foundation of our work. We operate with honesty and transparency in every action.</p>
-                        </div>
-                        <div class="value-desc" data-id="1">
-                            <p><b>Service</b> to others is our highest calling. We dedicate our time and energy to lifting those in need.</p>
-                        </div>
-                        <div class="value-desc" data-id="2">
-                            <p><b>Compassion</b> drives us to understand and alleviate the struggles of our community members.</p>
-                        </div>
-                        <div class="value-desc" data-id="3">
-                            <p><b>Faith</b> in God and in the potential of every individual fuels our mission and perseverance.</p>
-                        </div>
-                        <div class="value-desc" data-id="4">
-                            <p><b>Education</b> is the key to unlocking potential and breaking the cycle of poverty permanently.</p>
-                        </div>
-                        <div class="value-desc" data-id="5">
-                            <p><b>Self-Reliance</b> empowers individuals to provide for themselves and their families with dignity.</p>
-                        </div>
-                        <div class="value-desc" data-id="6">
-                            <p><b>Community</b> strength is built when neighbors help neighbors grow and succeed together.</p>
-                        </div>
-                        <div class="value-desc" data-id="7">
-                            <p><b>Hope</b> is what we build. A belief that tomorrow can be better than today through effort.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="values-list-wrap">
-                    <ul class="values-list">
-                        <li class="value-item active" data-id="0">Integrity <span class="value-tag">Value 01</span></li>
-                        <li class="value-item" data-id="1">Service <span class="value-tag">Value 02</span></li>
-                        <li class="value-item" data-id="2">Compassion <span class="value-tag">Value 03</span></li>
-                        <li class="value-item" data-id="3">Faith <span class="value-tag">Value 04</span></li>
-                        <li class="value-item" data-id="4">Education <span class="value-tag">Value 05</span></li>
-                        <li class="value-item" data-id="5">Self-Reliance <span class="value-tag">Value 06</span></li>
-                        <li class="value-item" data-id="6">Community <span class="value-tag">Value 07</span></li>
-                        <li class="value-item" data-id="7">Hope <span class="value-tag">Value 08</span></li>
-                    </ul>
-                </div>
+      <!-- CORE VALUES -->
+      <section id="values" class="values-section">
+        <div class="container values-container">
+          <div class="values-sticky-left">
+            <div class="values-header">
+              <h2>Our Core<br />Values.</h2>
             </div>
-        </section>
 
-        <section id="programs" class="programs-section">
-          <div class="container">
-            <div class="section-top">
-                <h2 class="fade-up">Our Programs</h2>
-            </div>
-            
-            <div class="luxury-prog-stack">
-              <div class="luxury-card fade-up">
-                <div class="luxury-card__img-wrapper">
-                  <img src="./images/students.jpg" alt="College" width="600" height="600" loading="lazy" decoding="async">
-                </div>
-                <div class="luxury-card__content">
-                  <span class="luxury-card__code">Education</span>
-                  <div class="luxury-card__title">College Assistance Program</div>
-                  <div class="luxury-card__text">The SELFLESS College Assistance Program (CAP) helps individuals to lifelong self-sufficiency by providing supplemental funds to attend a 4-year university as well as by providing individualized career coaching.</div>
-                  <a href="#cap" class="luxury-card__link">Read More <span class="arrow">→</span></a>
-                </div>
+            <div class="values-descriptions" id="valuesDescriptions">
+              <div class="value-desc active" data-id="0">
+                <p><b>Integrity</b> is the foundation of our work. We operate with honesty and transparency in every action.</p>
               </div>
-
-              <div class="luxury-card fade-up">
-                <div class="luxury-card__img-wrapper">
-                  <img src="./images/missionary.jpg" alt="Missionary" width="600" height="600" loading="lazy" decoding="async">
-                </div>
-                <div class="luxury-card__content">
-                  <span class="luxury-card__code">Faith & Service</span>
-                  <div class="luxury-card__title">Missionary Assistance</div>
-                  <div class="luxury-card__text">Providing an opportunity for individuals to increase their faith as well as gain leadership, management, and other valuable skills through serving a full-time mission.</div>
-                  <a href="#missionary" class="luxury-card__link">Read More <span class="arrow">→</span></a>
-                </div>
+              <div class="value-desc" data-id="1">
+                <p><b>Service</b> to others is our highest calling. We dedicate our time and energy to lifting those in need.</p>
               </div>
-
-              <div class="luxury-card fade-up">
-                <div class="luxury-card__img-wrapper">
-                  <img src="./images/work.jpg" alt="Job" width="600" height="600" loading="lazy" decoding="async">
-                </div>
-                <div class="luxury-card__content">
-                  <span class="luxury-card__code">Career</span>
-                  <div class="luxury-card__title">Job Improvement Program</div>
-                  <div class="luxury-card__text">Promoting self-sufficiency by providing financial training and career coaching, as well as helping meet basic needs for short periods so recipients can focus on upskilling.</div>
-                  <a href="#job" class="luxury-card__link">Read More <span class="arrow">→</span></a>
-                </div>
+              <div class="value-desc" data-id="2">
+                <p><b>Compassion</b> drives us to understand and alleviate the struggles of our community members.</p>
+              </div>
+              <div class="value-desc" data-id="3">
+                <p><b>Faith</b> in God and in the potential of every individual fuels our mission and perseverance.</p>
+              </div>
+              <div class="value-desc" data-id="4">
+                <p><b>Education</b> is the key to unlocking potential and breaking the cycle of poverty permanently.</p>
+              </div>
+              <div class="value-desc" data-id="5">
+                <p><b>Self-Reliance</b> empowers individuals to provide for themselves and their families with dignity.</p>
+              </div>
+              <div class="value-desc" data-id="6">
+                <p><b>Community</b> strength is built when neighbors help neighbors grow and succeed together.</p>
+              </div>
+              <div class="value-desc" data-id="7">
+                <p><b>Hope</b> is what we build. A belief that tomorrow can be better than today through effort.</p>
               </div>
             </div>
           </div>
-        </section>
 
-        <section class="quote-section">
-            <div class="container">
-                <blockquote class="fade-up">
-                    "We encourage all program participants to be diligent in their efforts to improve their own lives so that they are able to better dedicate their time, talents, and energies to helping others in the future."
-                </blockquote>
-            </div>
-        </section>
-
-        <section id="work" class="work-section">
-          <div class="container">
-            <div class="work-header">
-              <h2 class="fade-up">Our Work Globally</h2>
-              <p class="fade-up" data-delay="200">Creating sustainable impact across borders through infrastructure and education.</p>
-            </div>
-
-            <div class="bento-grid">
-                <div class="bento-item bento-large parallax-item fade-up">
-                  <a id="country-us"></a>
-                    <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&q=80&fm=webp" alt="United States" width="800" height="600" loading="lazy" decoding="async">
-                    <div class="bento-content">
-                        <span class="bento-tag">United States</span>
-                        <h3>Community Education</h3>
-                        <p>Providing grants and educational resources to over 500 families across 12 states.</p>
-                        <a href="#" class="bento-link">Learn More</a>
-                    </div>
-                </div>
-
-                <div class="bento-stack">
-                    <div class="bento-item bento-small parallax-item fade-up" data-delay="100">
-                      <a id="country-uganda"></a>
-                        <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=600&q=80&fm=webpß" alt="Uganda" width="600" height="400" loading="lazy" decoding="async">
-                        <div class="bento-content">
-                            <span class="bento-tag">Uganda</span>
-                            <h3>Education & Tech</h3>
-                            <p>Building technology centers for students and paying for them tuition.</p>
-                            <a href="https://selfless-ce.web.app/" target="_blank" rel="noopener noreferrer" class="bento-link">Learn More</a>
-                        </div>
-                    </div>
-
-                    <div class="bento-item bento-small parallax-item fade-up" data-delay="200">
-                      <a id="country-liberia"></a>
-                        <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=600&q=80&fm=webp" alt="Liberia" width="600" height="400" loading="lazy" decoding="async">
-                        <div class="bento-content">
-                            <span class="bento-tag">Liberia</span>
-                            <h3>Education</h3>
-                            <p>Supporting individuals to become self reliant.</p>
-                            <a href="#" class="bento-link">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <div class="values-list-wrap">
+            <ul class="values-list">
+              <li class="value-item active" data-id="0">Integrity <span class="value-tag">Value 01</span></li>
+              <li class="value-item" data-id="1">Service <span class="value-tag">Value 02</span></li>
+              <li class="value-item" data-id="2">Compassion <span class="value-tag">Value 03</span></li>
+              <li class="value-item" data-id="3">Faith <span class="value-tag">Value 04</span></li>
+              <li class="value-item" data-id="4">Education <span class="value-tag">Value 05</span></li>
+              <li class="value-item" data-id="5">Self-Reliance <span class="value-tag">Value 06</span></li>
+              <li class="value-item" data-id="6">Community <span class="value-tag">Value 07</span></li>
+              <li class="value-item" data-id="7">Hope <span class="value-tag">Value 08</span></li>
+            </ul>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <footer id="contact">
-          <div class="container">
-            <div class="footer-layout">
-              <div class="footer-brand-col">
-                 <a href="index.html" class="logo footer-logo">
-                  <img src="./images/SelflessLogo1.png" alt="Selfless Logo" width="100" height="100" loading="lazy">
-                   <span>SELFLESS</span>
-                 </a>
-                 <p class="footer-desc">Real Change Through Collective Action. Empowering individuals to build stronger communities.</p>
-                 <div class="socials">
-                    <a href="#">Instagram</a>
-                    <a href="#">LinkedIn</a>
-                    <a href="#">Twitter</a>
-                 </div>
+      <!-- PROGRAMS -->
+      <section id="programs" class="programs-section">
+        <div class="container">
+          <div class="section-top">
+            <h2 class="fade-up">Our Programs</h2>
+          </div>
+
+          <div class="luxury-prog-stack">
+            <div class="luxury-card fade-up">
+              <div class="luxury-card__img-wrapper">
+                <img src="./images/students.jpg" alt="College" width="600" height="600" loading="lazy" decoding="async" />
               </div>
-              
-              <div class="footer-form-col">
-                <h3>Interested? Get in Touch.</h3>
-                <form class="contact-form">
-                  <div class="input-row">
-                      <input type="text" placeholder="Name" aria-label="Your Name" required>
-                      <input type="email" placeholder="Email" aria-label="Email Address" required>
-                  </div>
-                  <textarea placeholder="How can we help?" rows="4" aria-label="Message" required></textarea>
-                  <button type="submit" class="btn-luxury" aria-label="Send Message">Send Message</button>
-                </form>
+              <div class="luxury-card__content">
+                <span class="luxury-card__code">Education</span>
+                <div class="luxury-card__title">College Assistance Program</div>
+                <div class="luxury-card__text">
+                  The SELFLESS College Assistance Program (CAP) helps individuals to lifelong self-sufficiency by providing
+                  supplemental funds to attend a 4-year university as well as by providing individualized career coaching.
+                </div>
+                <a href="#cap" class="luxury-card__link">Read More <span class="arrow">→</span></a>
               </div>
             </div>
-            
-            <div class="footer-bottom">
-              <p>&copy; 2025 Selfless Inc.</p>
-              <div class="legal">
-                <a href="faq.html">FAQ</a>
-                <a href="#">Privacy</a>
+
+            <div class="luxury-card fade-up">
+              <div class="luxury-card__img-wrapper">
+                <img src="./images/missionary.jpg" alt="Missionary" width="600" height="600" loading="lazy" decoding="async" />
+              </div>
+              <div class="luxury-card__content">
+                <span class="luxury-card__code">Faith & Service</span>
+                <div class="luxury-card__title">Missionary Assistance</div>
+                <div class="luxury-card__text">
+                  Providing an opportunity for individuals to increase their faith as well as gain leadership, management, and other valuable skills through serving a full-time mission.
+                </div>
+                <a href="#missionary" class="luxury-card__link">Read More <span class="arrow">→</span></a>
+              </div>
+            </div>
+
+            <div class="luxury-card fade-up">
+              <div class="luxury-card__img-wrapper">
+                <img src="./images/work.jpg" alt="Job" width="600" height="600" loading="lazy" decoding="async" />
+              </div>
+              <div class="luxury-card__content">
+                <span class="luxury-card__code">Career</span>
+                <div class="luxury-card__title">Job Improvement Program</div>
+                <div class="luxury-card__text">
+                  Promoting self-sufficiency by providing financial training and career coaching, as well as helping meet basic needs for short periods so recipients can focus on upskilling.
+                </div>
+                <a href="#job" class="luxury-card__link">Read More <span class="arrow">→</span></a>
               </div>
             </div>
           </div>
-        </footer>
+        </div>
+      </section>
 
+      <!-- QUOTE -->
+      <section class="quote-section">
+        <div class="container">
+          <blockquote class="fade-up">
+            "We encourage all program participants to be diligent in their efforts to improve their own lives so that they are able to better dedicate their time, talents, and energies to helping others in the future."
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- WORK -->
+      <section id="work" class="work-section">
+        <div class="container">
+          <div class="work-header">
+            <h2 class="fade-up">Our Work Globally</h2>
+            <p class="fade-up" data-delay="200">Creating sustainable impact across borders through infrastructure and education.</p>
+          </div>
+
+          <div class="bento-grid">
+            <div class="bento-item bento-large parallax-item fade-up">
+              <a id="country-us"></a>
+              <img
+                src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1400&q=80&fm=webp"
+                alt="United States"
+                width="1400"
+                height="900"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="bento-content">
+                <span class="bento-tag">United States</span>
+                <h3>Community Education</h3>
+                <p>Providing grants and educational resources to over 500 families across 12 states.</p>
+                <a href="#" class="bento-link">Learn More</a>
+              </div>
+            </div>
+
+            <div class="bento-stack">
+              <div class="bento-item bento-small parallax-item fade-up" data-delay="100">
+                <a id="country-uganda"></a>
+                <img
+                  src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1200&q=80&fm=webp"
+                  alt="Uganda"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="bento-content">
+                  <span class="bento-tag">Uganda</span>
+                  <h3>Education & Tech</h3>
+                  <p>Building technology centers for students and paying for them tuition.</p>
+                  <a href="https://selfless-ce.web.app/" target="_blank" rel="noopener noreferrer" class="bento-link">Learn More</a>
+                </div>
+              </div>
+
+              <div class="bento-item bento-small parallax-item fade-up" data-delay="200">
+                <a id="country-liberia"></a>
+                <img
+                  src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1200&q=80&fm=webp"
+                  alt="Liberia"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="bento-content">
+                  <span class="bento-tag">Liberia</span>
+                  <h3>Education</h3>
+                  <p>Supporting individuals to become self reliant.</p>
+                  <a href="https://actselfless.web.app/" class="bento-link">Learn More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer id="contact">
+        <div class="container">
+          <div class="footer-layout">
+            <div class="footer-brand-col">
+              <a href="index.html" class="logo footer-logo">
+                <img src="./images/SelflessLogo1.png" alt="Selfless Logo" width="100" height="100" loading="lazy" decoding="async" />
+                <span>SELFLESS</span>
+              </a>
+              <p class="footer-desc">Real Change Through Collective Action. Empowering individuals to build stronger communities.</p>
+              <div class="socials">
+                <a href="#">Facebook</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">X</a>
+              </div>
+            </div>
+
+            <div class="footer-form-col">
+              <h3>Interested? Get in Touch.</h3>
+              <form class="contact-form">
+                <div class="input-row">
+                  <input type="text" placeholder="Name" aria-label="Your Name" required />
+                  <input type="email" placeholder="Email" aria-label="Email Address" required />
+                </div>
+                <textarea placeholder="How can we help?" rows="4" aria-label="Message" required></textarea>
+                <button type="submit" class="btn-luxury" aria-label="Send Message">Send Message</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <p>&copy; 2025 Selfless Inc.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </main>
 
-    
+    <!-- MODAL -->
     <div id="program-modal" class="modal-overlay" aria-hidden="true">
-        <div class="modal-container">
-            <button class="modal-close" aria-label="Close">&times;</button>
-            <div class="modal-content-scroll">
-                <div id="modal-body-inject"></div>
-
-                <!-- Side-scroll mini cards — lets users swipe through program cards within the modal -->
-                <div class="modal-program-row" aria-hidden="false">
-                    <!-- populated by JS (keeps HTML structure intact; JS fills cards) -->
-                </div>
-
-                <div class="modal-footer">
-                    <a href="#contact" class="btn-luxury modal-apply-btn">Apply Now</a>
-                </div>
-            </div>
+      <div class="modal-container">
+        <button class="modal-close" aria-label="Close">&times;</button>
+        <div class="modal-content-scroll">
+          <div id="modal-body-inject"></div>
+          <div class="modal-program-row" aria-hidden="false"></div>
+          <div class="modal-footer">
+            <a href="#contact" class="btn-luxury modal-apply-btn">Apply Now</a>
+          </div>
         </div>
+      </div>
     </div>
-
   </body>
 </html>
