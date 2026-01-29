@@ -26,3 +26,7 @@ jobs:
           aws s3 sync . s3://becomeselfless.com --exclude ".git/*" --exclude ".github/*" --exclude ".vscode/*"
           aws s3 sync . s3://becomeselfless.net --exclude ".git/*" --exclude ".github/*" --exclude ".vscode/*"
           aws s3 sync . s3://becomeselfless.org --exclude ".git/*" --exclude ".github/*" --exclude ".vscode/*"
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id E1EUBCGR8F9C85 --paths "/*"
