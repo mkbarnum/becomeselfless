@@ -50,16 +50,6 @@ body {
 }
 .split-header.in-view span { opacity: 1; transform: translateY(0); }
 
-/* Ensure intro-section headers are visible by default (avoid waiting for intersection)
-    This targets only split-headers inside the intro section so hero animations remain. */
-.intro-section .split-header span { opacity: 1; transform: translateY(0); }
-
-.reveal-mask {
-    clip-path: inset(100% 0% 0% 0%);
-    transition: clip-path 1.2s cubic-bezier(0.65, 0, 0.35, 1);
-}
-.reveal-mask.in-view { clip-path: inset(0% 0% 0% 0%); }
-
 .parallax-hero, .intro-visual img, .luxury-card__img-wrapper img, .bento-item img {
   will-change: transform;
 }
